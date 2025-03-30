@@ -19,8 +19,8 @@ public class PosicaoHandlerTest
 
         _posicaoHandler.IncrementarColuna();
 
-        Assert.Equal(novaPosicaoEsperada.Coluna, _posicaoHandler.Posicao.Coluna);
-        Assert.Equal(novaPosicaoEsperada.Linha, _posicaoHandler.Posicao.Linha);
+        Assert.Equal(novaPosicaoEsperada.Coluna, _posicaoHandler.PosicaoAtual.Coluna);
+        Assert.Equal(novaPosicaoEsperada.Linha, _posicaoHandler.PosicaoAtual.Linha);
     }
 
     [Fact]
@@ -30,7 +30,7 @@ public class PosicaoHandlerTest
 
         _posicaoHandler.DecrementarColuna();
 
-        Assert.True(novaPosicaoEsperada.Equals(_posicaoHandler.Posicao));
+        Assert.True(novaPosicaoEsperada.Equals(_posicaoHandler.PosicaoAtual));
     }
 
     [Fact]
@@ -40,7 +40,7 @@ public class PosicaoHandlerTest
 
         _posicaoHandler.IncrementarLinha();
 
-        Assert.True(novaPosicaoEsperada.Equals(_posicaoHandler.Posicao));
+        Assert.True(novaPosicaoEsperada.Equals(_posicaoHandler.PosicaoAtual));
     }
 
     [Fact]
@@ -50,6 +50,6 @@ public class PosicaoHandlerTest
 
         _posicaoHandler.DecrementarLinha();
 
-        Assert.True(novaPosicaoEsperada.Equals(_posicaoHandler.Posicao));
+        Assert.True(novaPosicaoEsperada.Equals(_posicaoHandler.PosicaoAtual));
     }
 }

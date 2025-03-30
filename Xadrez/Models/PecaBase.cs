@@ -26,7 +26,7 @@ public abstract class PecaBase : IPeca
     {
         try
         {
-            if (!MovimentosPossiveis().Contains(posicaoDesejada))
+            if (!MovimentosPossiveis.Contains(posicaoDesejada))
                 throw new MovimentoException();
         }
         catch (PosicaoException)
