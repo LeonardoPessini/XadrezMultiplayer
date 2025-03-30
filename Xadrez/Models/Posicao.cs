@@ -23,9 +23,9 @@ public class Posicao
         get => _coluna; 
         init
         {
-            var charUpper = char.ToUpper(value);
+            var charUpper = char.ToLower(value);
 
-            if (charUpper >= 'A' && charUpper <= 'H')
+            if (charUpper >= 'a' && charUpper <= 'h')
                 _coluna = charUpper;
 
             else throw new PosicaoException();
