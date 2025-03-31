@@ -4,49 +4,94 @@ namespace Xadrez.Models;
 
 public class PosicaoHandler
 {
-    private readonly Posicao _posicaoBase;
-    public Posicao PosicaoAtual { get; private set; }
+    private char _colunaAtual;
+    private char _linhaAtual;
+    public Posicao Posicao { get; private set; }
 
     public PosicaoHandler(Posicao posicao)
     {
-        _posicaoBase = posicao;
-        PosicaoAtual = new Posicao(_posicaoBase.Coluna.ToString() + _posicaoBase.Linha.ToString());
+        _colunaAtual = posicao.Coluna;
+        _linhaAtual = posicao.Linha;
+        Posicao = new Posicao(_colunaAtual.ToString() + _linhaAtual.ToString());
     }
 
     public void IncrementarColuna()
     {
-        var ascii = PosicaoAtual.Coluna + 1;
-        PosicaoAtual = PosicaoComNovaColuna((char)ascii);
+        var ascii = _colunaAtual + 1;
+        Posicao = PosicaoComNovaColuna((char)ascii);
     }
 
     public void DecrementarColuna()
     {
-        var ascii = PosicaoAtual.Coluna - 1;
-        PosicaoAtual = PosicaoComNovaColuna((char)ascii);
+        var ascii = _colunaAtual - 1;
+        Posicao = PosicaoComNovaColuna((char)ascii);
     }
 
     private Posicao PosicaoComNovaColuna(char coluna)
     {
-        var novaPosicao = coluna.ToString() + PosicaoAtual.Linha.ToString();
+        _colunaAtual = coluna;
+        var novaPosicao = coluna.ToString() + Posicao.Linha.ToString();
         return new Posicao(novaPosicao);
     }
 
 
     public void IncrementarLinha()
     {
-        var ascii = PosicaoAtual.Linha + 1;
-        PosicaoAtual = PosicaoComNovaLinha((char)ascii);
+        var ascii = _linhaAtual + 1;
+        Posicao = PosicaoComNovaLinha((char)ascii);
     }
 
     public void DecrementarLinha()
     {
-        var ascii = PosicaoAtual.Linha - 1;
-        PosicaoAtual = PosicaoComNovaLinha((char)ascii);
+        var ascii = _linhaAtual - 1;
+        Posicao = PosicaoComNovaLinha((char)ascii);
     }
 
     private Posicao PosicaoComNovaLinha(char linha)
     {
-        var novaPosicao = PosicaoAtual.Coluna.ToString() + linha.ToString();
+        _linhaAtual = linha;
+        var novaPosicao = Posicao.Coluna.ToString() + linha.ToString();
         return new Posicao(novaPosicao);
+    }
+
+
+    public bool TryIncrementarColuna()
+    {
+        try{
+            IncrementarColuna();
+            return true;
+        }catch{
+            return false;
+        }
+    }
+
+    public bool TryDecrementarColuna()
+    {
+        try{
+            DecrementarColuna();
+            return true;
+        }catch{
+            return false;
+        }
+    }
+
+    public bool TryIncrementarLinha()
+    {
+        try{
+            IncrementarLinha();
+            return true;
+        }catch{
+            return false;
+        }
+    }
+
+    public bool TryDecrementarLinha()
+    {
+        try{
+            DecrementarLinha();
+            return true;
+        }catch{
+            return false;
+        }
     }
 }
