@@ -6,53 +6,26 @@ public class PosicaoHandler
 {
     private char _colunaAtual;
     private char _linhaAtual;
-    public Posicao Posicao { get; private set; }
+    public Posicao Posicao 
+    { 
+        get => new Posicao(_colunaAtual.ToString() + _linhaAtual.ToString());
+    }
+
 
     public PosicaoHandler(Posicao posicao)
     {
         _colunaAtual = posicao.Coluna;
         _linhaAtual = posicao.Linha;
-        Posicao = new Posicao(_colunaAtual.ToString() + _linhaAtual.ToString());
-    }
-
-    public void IncrementarColuna()
-    {
-        var ascii = _colunaAtual + 1;
-        Posicao = PosicaoComNovaColuna((char)ascii);
-    }
-
-    public void DecrementarColuna()
-    {
-        var ascii = _colunaAtual - 1;
-        Posicao = PosicaoComNovaColuna((char)ascii);
-    }
-
-    private Posicao PosicaoComNovaColuna(char coluna)
-    {
-        _colunaAtual = coluna;
-        var novaPosicao = coluna.ToString() + Posicao.Linha.ToString();
-        return new Posicao(novaPosicao);
     }
 
 
-    public void IncrementarLinha()
-    {
-        var ascii = _linhaAtual + 1;
-        Posicao = PosicaoComNovaLinha((char)ascii);
-    }
+    public void IncrementarColuna() => _colunaAtual = (char)(_colunaAtual + 1);
 
-    public void DecrementarLinha()
-    {
-        var ascii = _linhaAtual - 1;
-        Posicao = PosicaoComNovaLinha((char)ascii);
-    }
+    public void DecrementarColuna() => _colunaAtual = (char)(_colunaAtual - 1);
 
-    private Posicao PosicaoComNovaLinha(char linha)
-    {
-        _linhaAtual = linha;
-        var novaPosicao = Posicao.Coluna.ToString() + linha.ToString();
-        return new Posicao(novaPosicao);
-    }
+    public void IncrementarLinha() => _linhaAtual = (char)(_linhaAtual + 1);
+
+    public void DecrementarLinha() => _linhaAtual = (char)(_linhaAtual - 1);
 
 
     public bool TryIncrementarColuna()
@@ -65,6 +38,7 @@ public class PosicaoHandler
         }
     }
 
+
     public bool TryDecrementarColuna()
     {
         try{
@@ -74,6 +48,7 @@ public class PosicaoHandler
             return false;
         }
     }
+
 
     public bool TryIncrementarLinha()
     {

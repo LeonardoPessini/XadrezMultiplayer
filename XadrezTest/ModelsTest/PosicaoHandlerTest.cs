@@ -77,6 +77,8 @@ public class PosicaoHandlerTest
     }
 
 
+
+
     [Fact]
     public void TryIncrementarCluna_DeveretornarValorCorreto()
     {
