@@ -1,14 +1,14 @@
 ﻿using System.Text;
 
-namespace Xadrez.Models;
+namespace Xadrez.Posicoes;
 
 public class PosicaoHandler
 {
     private char _colunaAtual;
     private char _linhaAtual;
 
-    public Posicao? Posicao 
-    { 
+    public Posicao? Posicao
+    {
         get => PosicaoFactory.Get(_colunaAtual.ToString() + _linhaAtual.ToString());
     }
 

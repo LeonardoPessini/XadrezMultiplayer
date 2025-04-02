@@ -2,7 +2,7 @@
 using System.Collections.Immutable;
 using Xadrez.Exceptions;
 
-namespace Xadrez.Models;
+namespace Xadrez.Posicoes;
 
 public static class PosicaoFactory
 {
@@ -20,7 +20,7 @@ public static class PosicaoFactory
         {
             for (char linha = linhaInicial; linha <= linhaFinal; ++linha)
             {
-                var posicao = ((char)coluna).ToString() + ((char)linha).ToString();
+                var posicao = coluna.ToString() + linha.ToString();
                 posicoes.Add(posicao, new Posicao(posicao));
             }
         }

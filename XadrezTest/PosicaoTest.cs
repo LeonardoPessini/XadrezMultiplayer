@@ -1,8 +1,8 @@
 ﻿using Xadrez.Exceptions;
-using Xadrez.Models;
+using Xadrez.Posicoes;
 
 
-namespace XadrezTest.ModelsTest;
+namespace XadrezTest;
 
 public class PosicaoTest
 {
@@ -13,7 +13,7 @@ public class PosicaoTest
     [InlineData("h8")]
     public void New_DeveCriarPosicao(string posicao)
     {
-        var posicaoCriada = new Posicao(posicao);
+        var posicaoCriada = PosicaoFactory.Get(posicao);
 
         Assert.NotNull(posicaoCriada);
         Assert.Equal(posicao[0], posicaoCriada.Coluna);

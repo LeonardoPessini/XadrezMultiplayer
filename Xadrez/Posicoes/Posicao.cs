@@ -1,6 +1,6 @@
 ﻿using Xadrez.Exceptions;
 
-namespace Xadrez.Models;
+namespace Xadrez.Posicoes;
 
 public class Posicao
 {
@@ -18,9 +18,9 @@ public class Posicao
     }
 
 
-    public char Coluna 
-    { 
-        get => _coluna; 
+    public char Coluna
+    {
+        get => _coluna;
         init
         {
             var charUpper = char.ToLower(value);
@@ -32,12 +32,12 @@ public class Posicao
         }
     }
 
-    public char Linha 
-    { 
-        get => _linha; 
+    public char Linha
+    {
+        get => _linha;
         init
         {
-            if(value >= '1' && value <= '8')
+            if (value >= '1' && value <= '8')
                 _linha = value;
 
             else throw new PosicaoException();
@@ -51,7 +51,7 @@ public class Posicao
         if (posicao == null)
             return false;
 
-        return this.Linha.Equals(posicao.Linha) && this.Coluna.Equals(posicao.Coluna);
+        return Linha.Equals(posicao.Linha) && Coluna.Equals(posicao.Coluna);
     }
 
     public override int GetHashCode()

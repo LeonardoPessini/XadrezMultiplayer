@@ -1,4 +1,4 @@
-﻿namespace Xadrez.Models;
+﻿namespace Xadrez.Pecas;
 
 public enum Cor
 {
