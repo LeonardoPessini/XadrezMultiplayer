@@ -41,7 +41,6 @@ public class Posicao
                 _linha = value;
 
             else throw new PosicaoException();
-
         }
     }
 
@@ -58,5 +57,10 @@ public class Posicao
     public override int GetHashCode()
     {
         return Linha.GetHashCode() + Coluna.GetHashCode();
+    }
+
+    public override string ToString()
+    {
+        return _coluna.ToString() + _linha.ToString();
     }
 }

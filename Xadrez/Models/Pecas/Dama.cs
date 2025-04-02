@@ -1,4 +1,5 @@
 ﻿
+
 namespace Xadrez.Models.Pecas;
 
 public class Dama : PecaBase
@@ -7,5 +8,8 @@ public class Dama : PecaBase
     {
     }
 
-    public override IEnumerable<Posicao> MovimentosPossiveis => throw new NotImplementedException();
+    public override IEnumerable<Posicao> MovimentosPossiveisAPartirDe(Posicao posicaoInicial)
+    {
+        throw new NotImplementedException();
+    }
 }
