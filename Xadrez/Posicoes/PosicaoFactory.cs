@@ -6,7 +6,7 @@ namespace Xadrez.Posicoes;
 
 public static class PosicaoFactory
 {
-    private static readonly ImmutableDictionary<string, Posicao> _posicoes;
+    static readonly ImmutableDictionary<string, Posicao> Posicoes;
 
     static PosicaoFactory()
     {
@@ -25,11 +25,12 @@ public static class PosicaoFactory
             }
         }
 
-        _posicoes = posicoes.ToImmutableDictionary();
+        Posicoes = posicoes.ToImmutableDictionary();
     }
 
     public static Posicao? Get(string posicao)
     {
-        return _posicoes.ContainsKey(posicao) ? _posicoes[posicao] : null;
+        var posicaoComLetrasMinusculas = posicao.ToLower();
+        return Posicoes.ContainsKey(posicaoComLetrasMinusculas) ? Posicoes[posicaoComLetrasMinusculas] : null;
     }
 }
