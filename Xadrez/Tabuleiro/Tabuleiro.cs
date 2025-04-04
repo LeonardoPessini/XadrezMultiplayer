@@ -5,7 +5,7 @@ namespace Xadrez.Tabuleiro;
 
 public class Tabuleiro
 {
-    private readonly Dictionary<Posicao, Peca> _posicaoPecas;
+    private readonly Dictionary<Posicao, Peca?> _posicaoPecas;
 
     public Tabuleiro()
     {

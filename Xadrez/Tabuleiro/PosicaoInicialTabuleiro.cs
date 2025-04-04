@@ -1,5 +1,4 @@
 ﻿using System.Collections.Immutable;
-using System.Runtime.ConstrainedExecution;
 using Xadrez.Pecas;
 using Xadrez.Posicoes;
 
@@ -29,14 +28,14 @@ public static class PosicaoInicialTabuleiro
         ColocarBispos(Cor.Branca);
         ColocarCavalos(Cor.Branca);
         ColocarTorres(Cor.Branca);
-        ColocarPeoesBrancos();
+        ColocarPeoes(Cor.Branca);
 
         ColocarRei(Cor.Preta);
         ColocarDama(Cor.Preta);
         ColocarBispos(Cor.Preta);
         ColocarCavalos(Cor.Preta);
         ColocarTorres(Cor.Preta);
-        ColocarPeoesPretos();
+        ColocarPeoes(Cor.Preta);
 
         DeixarOutrasPoicoesVazias();
 
@@ -44,52 +43,44 @@ public static class PosicaoInicialTabuleiro
     }
 
 
-
     private static void ColocarRei(Cor cor)
     {
         var rei = PecaFactory.Get(TipoPeca.Rei, cor);
-        var posicao = (cor == Cor.Branca) ? 
-                            PosicaoFactory.Get("E1")! : 
-                            PosicaoFactory.Get("E8")!;
+        var posicao = (cor == Cor.Branca) ? "E1" : "E8";
 
-        _posicaoPeca.Add(posicao, rei);
+        _posicaoPeca.Add(PosicaoFactory.Get(posicao)!, rei);
     }
 
 
     private static void ColocarDama(Cor cor)
     {
         var dama = PecaFactory.Get(TipoPeca.Dama, cor);
-        var posicao = (cor == Cor.Branca) ?
-                            PosicaoFactory.Get("D1")! :
-                            PosicaoFactory.Get("D8")!;
+        var posicao = (cor == Cor.Branca) ? "D1" : "D8";
 
-        _posicaoPeca.Add(posicao, dama);
+        _posicaoPeca.Add(PosicaoFactory.Get(posicao)!, dama);
     }
+
 
     private static void ColocarBispos(Cor cor)
     {
         var bispo = PecaFactory.Get(TipoPeca.Bispo, cor);
-        var posicoes = (cor == Cor.Branca) ?  
-            new Posicao[] { PosicaoFactory.Get("C1")!, PosicaoFactory.Get("F1")! } : 
-            new Posicao[] { PosicaoFactory.Get("C8")!, PosicaoFactory.Get("F8")! };
+        string[] posicoes = (cor == Cor.Branca) ? [ "C1", "F1" ] : [ "C8", "F8" ];
 
         ColocarNoTabuleiro(posicoes, bispo);
     }
 
 
-    private static void ColocarNoTabuleiro(Posicao[] posicoes, Peca peca)
+    private static void ColocarNoTabuleiro(string[] posicoes, Peca peca)
     {
         foreach (var posicao in posicoes)
-            _posicaoPeca.Add(posicao, peca);
+            _posicaoPeca.Add(PosicaoFactory.Get(posicao)!, peca);
     }
 
 
     private static void ColocarCavalos(Cor cor)
     {
         var cavalo = PecaFactory.Get(TipoPeca.Cavalo, cor);
-        var posicoes = (cor == Cor.Branca) ?
-            new Posicao[] { PosicaoFactory.Get("B1")!, PosicaoFactory.Get("G1")! } :
-            new Posicao[] { PosicaoFactory.Get("B8")!, PosicaoFactory.Get("G8")! };
+        string[] posicoes = (cor == Cor.Branca) ? ["B1", "G1"] : ["B8", "G8"];
 
         ColocarNoTabuleiro(posicoes, cavalo);
     }
@@ -98,49 +89,22 @@ public static class PosicaoInicialTabuleiro
     private static void ColocarTorres(Cor cor)
     {
         var torre = PecaFactory.Get(TipoPeca.Torre, cor);
-        var posicoes = (cor == Cor.Branca) ?
-            new Posicao[] { PosicaoFactory.Get("A1")!, PosicaoFactory.Get("H1")! } :
-            new Posicao[] { PosicaoFactory.Get("A8")!, PosicaoFactory.Get("H8")! };
+        string[] posicoes = (cor == Cor.Branca) ? ["A1", "H1"] : ["A8", "H8"];
 
         ColocarNoTabuleiro(posicoes, torre);
     }
 
 
-    private static void ColocarPeoesBrancos()
+    private static void ColocarPeoes(Cor cor)
     {
-        var peao = PecaFactory.Get(TipoPeca.Peao, Cor.Branca);
-
-        var posicoes = new Posicao[] {
-            PosicaoFactory.Get("A2")!,
-            PosicaoFactory.Get("B2")!,
-            PosicaoFactory.Get("C2")!,
-            PosicaoFactory.Get("D2")!,
-            PosicaoFactory.Get("E2")!,
-            PosicaoFactory.Get("F2")!,
-            PosicaoFactory.Get("G2")!,
-            PosicaoFactory.Get("H2")!
-        };
+        var peao = PecaFactory.Get(TipoPeca.Peao, cor);
+        string[] posicoes = (cor == Cor.Branca) ?
+            ["A2", "B2", "C2", "D2", "F2", "E2", "G2", "H2"] :
+            ["A7", "B7", "C7", "D7", "E7", "F7", "G7", "H7"];
 
         ColocarNoTabuleiro(posicoes, peao);
     }
 
-    private static void ColocarPeoesPretos()
-    {
-        var peao = PecaFactory.Get(TipoPeca.Peao, Cor.Preta);
-
-        var posicoes = new Posicao[] {
-            PosicaoFactory.Get("A7")!,
-            PosicaoFactory.Get("B7")!,
-            PosicaoFactory.Get("C7")!,
-            PosicaoFactory.Get("D7")!,
-            PosicaoFactory.Get("E7")!,
-            PosicaoFactory.Get("F7")!,
-            PosicaoFactory.Get("G7")!,
-            PosicaoFactory.Get("H7")!
-        };
-
-        ColocarNoTabuleiro(posicoes, peao);
-    }
 
     private static void DeixarOutrasPoicoesVazias()
     {
