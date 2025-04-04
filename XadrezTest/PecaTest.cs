@@ -27,4 +27,17 @@ public class PecaTest
         Assert.Equal(peca, pecaCriada.Tipo);
     }
 
+
+    [Fact]
+    public void Equals_DeveCompararPeca()
+    {
+        var reiBranco1 = PecaFactory.Get(TipoPeca.Rei,Cor.Branca);
+        var reiBranco2 = PecaFactory.Get(TipoPeca.Rei, Cor.Branca);
+        var damaBranca1 = PecaFactory.Get(TipoPeca.Dama,Cor.Branca);
+        var reiPreto1 = PecaFactory.Get(TipoPeca.Rei, Cor.Preta);
+
+        Assert.Equal(reiBranco1, reiBranco2);
+        Assert.NotEqual(reiBranco1, reiPreto1);
+        Assert.NotEqual(reiBranco1, damaBranca1);
+    }
 }
